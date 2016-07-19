@@ -53,7 +53,13 @@ $(SPARC): $(ACSIM)
 	acsim sparc.ac ; \
 	make 
 
-clean: 
+clean-archc:
+	cd archc && make distclean
+
+clean-systemc:
+	cd systemc && make distclean
+
+clean: clean-systemc clean-archc 
 	find . -iname "*.o" -exec rm {} \; 
 	find . -iname "*.x" -exec rm {} \; 
 	find . -iname "*.a" -exec rm {} \;
