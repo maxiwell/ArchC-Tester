@@ -1,0 +1,18 @@
+[submodule "archc"]
+	path = archc
+	url = https://github.com/ArchC/ArchC.git
+[submodule "systemc"]
+	path = systemc
+	url = https://github.com/ArchC/SystemC.git
+[submodule "simulators/mips"]
+	path = simulators/mips
+	url = https://github.com/ArchC/mips.git
+[submodule "simulators/arm"]
+	path = simulators/arm
+	url = https://github.com/ArchC/arm.git
+[submodule "simulators/powerpc"]
+	path = simulators/powerpc
+	url = https://github.com/ArchC/powerpc.git
+[submodule "simulators/sparc"]
+	path = simulators/sparc
+	url = https://github.com/ArchC/sparc.git
