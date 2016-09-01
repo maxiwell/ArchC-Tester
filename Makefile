@@ -26,32 +26,38 @@ $(ACSIM): $(SYSTEMC)
 	./autogen.sh; \
 	./configure --prefix=$(PWD)/install/ \
 				--with-systemc=$(PWD)/install/ ; \
-	make && make install;
+	make && make install; \
+	ln -s ./install/etc/env.sh;
 
 $(MIPS): $(ACSIM)
-	. ./install/etc/env.sh ; \
+	. env.sh ; \
 	cd ./simulators/mips/ ; \
 	acsim mips.ac ; \
-	make 
+	make; \
+	cp mips.x ../../
+
 	
 
 $(ARM): $(ACSIM)
-	. ./install/etc/env.sh ; \
+	. env.sh ; \
 	cd ./simulators/arm/ ; \
 	acsim arm.ac ; \
-	make 
+	make ; \
+	cp arm.x ../../
 	
 $(POWERPC): $(ACSIM)
-	. ./install/etc/env.sh ; \
+	. env.sh ; \
 	cd ./simulators/powerpc/ ; \
 	acsim powerpc.ac ; \
-	make 
+	make; \
+	cp powerpc.x ../../
 	
 $(SPARC): $(ACSIM)
-	. ./install/etc/env.sh ; \
+	. env.sh ; \
 	cd ./simulators/sparc/ ; \
 	acsim sparc.ac ; \
-	make 
+	make ; \
+	cp sparc.x ../../
 
 clean-archc:
 	cd archc && make distclean
@@ -63,6 +69,7 @@ clean: clean-systemc clean-archc
 	find . -iname "*.o" -exec rm {} \; 
 	find . -iname "*.x" -exec rm {} \; 
 	find . -iname "*.a" -exec rm {} \;
+	rm -rf env.sh
 	rm -rf ./install/
 
 
