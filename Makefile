@@ -87,18 +87,14 @@ $(CROSS_SPARC):
 	tar -xvf archc_sparc_toolchain_20141215_64bit.tar.bz2; \
 	cd -; echo -e "export PATH=\"./cross/sparc-newlib-elf/bin/:\$$PATH\"" >> env.sh;
 
-clean-archc:
-	cd archc && make distclean
-
-clean-systemc:
-	cd systemc && make distclean
-
-clean: clean-systemc clean-archc 
-	find . -iname "*.o" -exec rm {} \; 
-	find . -iname "*.x" -exec rm {} \; 
-	find . -iname "*.a" -exec rm {} \;
-	rm -rf ./cross/
-	rm -rf ./install/
-	rm -rf env.sh
+clean: 
+	cd systemc && make distclean && cd -;\
+	cd archc && make distclean && cd -;  \
+	chmod 777 ./cross/ -R && rm -rf ./cross/;  \
+	rm -rf ./install/;  \
+	rm -rf env.sh; \
+	find . -iname "*.o" -exec rm {} \; ; \
+	find . -iname "*.x" -exec rm {} \; ; \
+	find . -iname "*.a" -exec rm {} \;  
 
 
